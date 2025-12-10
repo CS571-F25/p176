@@ -2,26 +2,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { motion } from 'framer-motion'
 import { pageTransition, staggerContainer, fadeInUp } from '../utils/motion'
 import Card from '../components/Card'
-import TeamMember from '../components/TeamMember'
 import WaitlistBanner from '../components/WaitlistBanner'
-
-const teamMembers = [
-  {
-    name: 'Alex Chen',
-    role: 'Founder & CEO',
-    bio: 'Former ML researcher at Stanford. Passionate about human-AI collaboration.'
-  },
-  {
-    name: 'Sarah Miller',
-    role: 'CTO',
-    bio: '15 years in distributed systems. Previously at Google and Stripe.'
-  },
-  {
-    name: 'James Park',
-    role: 'Head of Product',
-    bio: 'Design-driven product leader. Former VP of Product at Notion.'
-  }
-]
 
 function Mission() {
   return (
@@ -89,57 +70,63 @@ function Mission() {
                 </p>
               </motion.section>
 
-              {/* Team Section */}
-              <motion.section variants={fadeInUp} className="mt-6" aria-labelledby="team-heading">
-                <h2 id="team-heading" className="section-title">Our Team</h2>
-                <p className="section-text mb-4">
-                  We're a small team of engineers, researchers, and designers united by a shared vision of intelligent, human-centered AI.
-                </p>
-                <Row className="g-4">
-                  {teamMembers.map((member, index) => (
-                    <Col md={4} key={index}>
-                      <TeamMember {...member} />
-                    </Col>
-                  ))}
-                </Row>
+              {/* Creator Section */}
+              <motion.section variants={fadeInUp} className="mt-6" aria-labelledby="creator-heading">
+                <h2 id="creator-heading" className="section-title">Creator</h2>
+                <Card variant="subtle" hoverable={false}>
+                  <Card.Body style={{ textAlign: 'center', padding: 'var(--space-5)' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 600, margin: '0 0 var(--space-3)', color: 'var(--text)' }}>
+                      Rahul Remany
+                    </h3>
+                    <a 
+                      href="https://www.linkedin.com/in/rahul-remany-23930b20b/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-accent"
+                      style={{ textDecoration: 'none', fontWeight: 500 }}
+                    >
+                      LinkedIn →
+                    </a>
+                  </Card.Body>
+                </Card>
               </motion.section>
 
               {/* Values Section */}
               <motion.section variants={fadeInUp} className="mt-6" aria-labelledby="values-heading">
                 <h2 id="values-heading" className="section-title">Our Values</h2>
-                <Row className="g-4 mt-3">
-                  <Col md={4}>
-                    <Card variant="default">
+                <Row className="g-4 mt-3" style={{ display: 'flex', alignItems: 'stretch' }}>
+                  <Col md={4} style={{ display: 'flex' }}>
+                    <Card variant="default" style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
                       <Card.Header>
                         <h3 style={{ fontSize: '1.125rem', fontWeight: 600, margin: 0, color: 'var(--text)' }}>
                           Privacy by Design
                         </h3>
                       </Card.Header>
-                      <Card.Body>
+                      <Card.Body style={{ flex: 1 }}>
                         Your data is yours. We build privacy into every layer of our architecture.
                       </Card.Body>
                     </Card>
                   </Col>
-                  <Col md={4}>
-                    <Card variant="default">
+                  <Col md={4} style={{ display: 'flex' }}>
+                    <Card variant="default" style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
                       <Card.Header>
                         <h3 style={{ fontSize: '1.125rem', fontWeight: 600, margin: 0, color: 'var(--text)' }}>
                           Human-Centered
                         </h3>
                       </Card.Header>
-                      <Card.Body>
+                      <Card.Body style={{ flex: 1 }}>
                         AI should augment human intelligence, not replace it. You stay in control.
                       </Card.Body>
                     </Card>
                   </Col>
-                  <Col md={4}>
-                    <Card variant="default">
+                  <Col md={4} style={{ display: 'flex' }}>
+                    <Card variant="default" style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
                       <Card.Header>
                         <h3 style={{ fontSize: '1.125rem', fontWeight: 600, margin: 0, color: 'var(--text)' }}>
                           Thoughtful Design
                         </h3>
                       </Card.Header>
-                      <Card.Body>
+                      <Card.Body style={{ flex: 1 }}>
                         Every interaction is intentional. We ship when it's ready, not when it's rushed.
                       </Card.Body>
                     </Card>
