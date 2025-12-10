@@ -1,6 +1,27 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import { motion } from 'framer-motion'
 import { pageTransition, staggerContainer, fadeInUp } from '../utils/motion'
+import Card from '../components/Card'
+import TeamMember from '../components/TeamMember'
+import WaitlistBanner from '../components/WaitlistBanner'
+
+const teamMembers = [
+  {
+    name: 'Alex Chen',
+    role: 'Founder & CEO',
+    bio: 'Former ML researcher at Stanford. Passionate about human-AI collaboration.'
+  },
+  {
+    name: 'Sarah Miller',
+    role: 'CTO',
+    bio: '15 years in distributed systems. Previously at Google and Stripe.'
+  },
+  {
+    name: 'James Park',
+    role: 'Head of Product',
+    bio: 'Design-driven product leader. Former VP of Product at Notion.'
+  }
+]
 
 function Mission() {
   return (
@@ -10,52 +31,130 @@ function Mission() {
       animate="animate"
       exit="exit"
       variants={pageTransition}
+      role="main"
+      aria-label="Mission page"
     >
       <Container>
         <Row className="justify-content-center">
           <Col lg={10} xl={8}>
             <motion.div variants={staggerContainer(0.1)} initial="hidden" animate="visible">
-              <motion.h1 variants={fadeInUp}>Mission</motion.h1>
-              <motion.p className="lead" variants={fadeInUp}>
-                From cognitive overload to the contextual age. brAIn organizes your work into living memory, enabling calm, clear progress.
-              </motion.p>
+              <motion.header variants={fadeInUp}>
+                <h1>Mission</h1>
+                <p className="lead">
+                  From cognitive overload to the contextual age. brAIn organizes your work into living memory, enabling calm, clear progress.
+                </p>
+              </motion.header>
               
-              <motion.div variants={fadeInUp} className="mt-5">
-                <h3 className="section-title">The Problem</h3>
+              {/* The Problem Section */}
+              <motion.section variants={fadeInUp} className="mt-6" aria-labelledby="problem-heading">
+                <h2 id="problem-heading" className="section-title">The Problem</h2>
                 <p className="section-text">
                   Information sprawls across tools, conversations, and documents. Context gets lost. 
                   Decisions lack historical perspective. We're drowning in data but starving for insight.
                 </p>
-              </motion.div>
+                <Card variant="subtle" hoverable={false}>
+                  <Card.Body>
+                    <ul style={{ margin: 0, paddingLeft: '1.5rem', color: 'var(--muted)' }}>
+                      <li style={{ marginBottom: 'var(--space-2)' }}>
+                        Average knowledge worker uses <strong style={{ color: 'var(--text)' }}>9+ applications</strong> daily
+                      </li>
+                      <li style={{ marginBottom: 'var(--space-2)' }}>
+                        <strong style={{ color: 'var(--text)' }}>23 minutes</strong> to refocus after an interruption
+                      </li>
+                      <li style={{ marginBottom: 0 }}>
+                        <strong style={{ color: 'var(--text)' }}>60%</strong> of work time spent searching for information
+                      </li>
+                    </ul>
+                  </Card.Body>
+                </Card>
+              </motion.section>
 
-              <motion.div variants={fadeInUp} className="mt-5">
-                <h3 className="section-title">Our Approach</h3>
+              {/* Our Approach Section */}
+              <motion.section variants={fadeInUp} className="mt-6" aria-labelledby="approach-heading">
+                <h2 id="approach-heading" className="section-title">Our Approach</h2>
                 <p className="section-text">
                   brAIn acts as an invisible layer that learns, remembers, and reasons alongside you. 
                   It doesn't replace your workflow—it amplifies it. By understanding context across 
                   time and tools, brAIn transforms chaos into organized intelligence.
                 </p>
-              </motion.div>
+              </motion.section>
 
-              <motion.div variants={fadeInUp} className="mt-5">
-                <h3 className="section-title">The Vision</h3>
+              {/* The Vision Section */}
+              <motion.section variants={fadeInUp} className="mt-6" aria-labelledby="vision-heading">
+                <h2 id="vision-heading" className="section-title">The Vision</h2>
                 <p className="section-text">
                   A future where AI thinks with you, not for you. Where every piece of information 
                   is connected, every decision is informed, and every action is intentional. 
                   <span className="text-accent"> Calm. Clear. Intelligent.</span>
                 </p>
-              </motion.div>
+              </motion.section>
+
+              {/* Team Section */}
+              <motion.section variants={fadeInUp} className="mt-6" aria-labelledby="team-heading">
+                <h2 id="team-heading" className="section-title">Our Team</h2>
+                <p className="section-text mb-4">
+                  We're a small team of engineers, researchers, and designers united by a shared vision of intelligent, human-centered AI.
+                </p>
+                <Row className="g-4">
+                  {teamMembers.map((member, index) => (
+                    <Col md={4} key={index}>
+                      <TeamMember {...member} />
+                    </Col>
+                  ))}
+                </Row>
+              </motion.section>
+
+              {/* Values Section */}
+              <motion.section variants={fadeInUp} className="mt-6" aria-labelledby="values-heading">
+                <h2 id="values-heading" className="section-title">Our Values</h2>
+                <Row className="g-4 mt-3">
+                  <Col md={4}>
+                    <Card variant="default">
+                      <Card.Header>
+                        <h3 style={{ fontSize: '1.125rem', fontWeight: 600, margin: 0, color: 'var(--text)' }}>
+                          Privacy by Design
+                        </h3>
+                      </Card.Header>
+                      <Card.Body>
+                        Your data is yours. We build privacy into every layer of our architecture.
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                  <Col md={4}>
+                    <Card variant="default">
+                      <Card.Header>
+                        <h3 style={{ fontSize: '1.125rem', fontWeight: 600, margin: 0, color: 'var(--text)' }}>
+                          Human-Centered
+                        </h3>
+                      </Card.Header>
+                      <Card.Body>
+                        AI should augment human intelligence, not replace it. You stay in control.
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                  <Col md={4}>
+                    <Card variant="default">
+                      <Card.Header>
+                        <h3 style={{ fontSize: '1.125rem', fontWeight: 600, margin: 0, color: 'var(--text)' }}>
+                          Thoughtful Design
+                        </h3>
+                      </Card.Header>
+                      <Card.Body>
+                        Every interaction is intentional. We ship when it's ready, not when it's rushed.
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                </Row>
+              </motion.section>
             </motion.div>
           </Col>
         </Row>
       </Container>
+      
+      {/* Waitlist Banner */}
+      <WaitlistBanner />
     </motion.main>
   )
 }
 
 export default Mission
-
-
-
-
-

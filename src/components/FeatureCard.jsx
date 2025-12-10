@@ -7,7 +7,7 @@ function FeatureCard({ title, subtitle, children }) {
       className="featureCard"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-100px' }}
+      viewport={{ once: false, amount: 0.3, margin: '-50px' }}
       variants={fadeInUp}
       whileHover={{ y: -8, scale: 1.02 }}
       transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}

@@ -1,23 +1,11 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import { motion } from 'framer-motion'
-import { pageTransition, staggerContainer, fadeInUp, scaleIn } from '../utils/motion'
-
-function TechNode({ label, description, delay = 0 }) {
-  return (
-    <motion.div 
-      className="techNode"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
-      variants={scaleIn}
-      transition={{ delay }}
-      whileHover={{ scale: 1.05 }}
-    >
-      <span>{label}</span>
-      {description && <p className="mt-3 mb-0 muted" style={{ fontSize: '0.9rem' }}>{description}</p>}
-    </motion.div>
-  )
-}
+import { pageTransition, staggerContainer, fadeInUp } from '../utils/motion'
+import SectionHeader from '../components/SectionHeader'
+import TechNode from '../components/TechNode'
+import Card from '../components/Card'
+import IconFeature from '../components/IconFeature'
+import WaitlistBanner from '../components/WaitlistBanner'
 
 function Technology() {
   return (
@@ -27,89 +15,133 @@ function Technology() {
       animate="animate"
       exit="exit"
       variants={pageTransition}
+      role="main"
+      aria-label="Technology page"
     >
       <Container>
         <Row className="justify-content-center">
           <Col lg={10} xl={9}>
             <motion.div variants={staggerContainer(0.1)} initial="hidden" animate="visible">
-              <motion.h1 variants={fadeInUp}>Technology</motion.h1>
-              <motion.p className="lead" variants={fadeInUp}>
-                A layered architecture designed for context, memory, and intelligent reasoning.
-              </motion.p>
-              
-              <motion.div variants={fadeInUp} className="mt-5">
-                <p className="muted mb-4" style={{ fontSize: '1.1rem', fontWeight: 500 }}>
-                  Architecture: Input → Memory → Reasoning → Output
+              <motion.header variants={fadeInUp}>
+                <h1>Technology</h1>
+                <p className="lead">
+                  A layered architecture designed for context, memory, and intelligent reasoning.
                 </p>
-                <Row className="techDiagram g-4 align-items-stretch">
-                  <Col md={6} lg={3}>
-                    <TechNode 
-                      label="Input Layer" 
-                      description="Multi-source ingestion from docs, tickets, conversations"
-                      delay={0.1}
-                    />
-                  </Col>
-                  <Col md="auto" className="techArrow d-none d-md-flex">→</Col>
-                  <Col md={6} lg={3}>
-                    <TechNode 
-                      label="Memory" 
-                      description="Persistent, contextual storage with temporal awareness"
-                      delay={0.2}
-                    />
-                  </Col>
-                  <Col md="auto" className="techArrow d-none d-md-flex">→</Col>
-                  <Col md={6} lg={3}>
-                    <TechNode 
-                      label="Reasoning" 
-                      description="Pattern recognition and intelligent inference"
-                      delay={0.3}
-                    />
-                  </Col>
-                  <Col md="auto" className="techArrow d-none d-md-flex">→</Col>
-                  <Col md={6} lg={3}>
-                    <TechNode 
-                      label="Output" 
-                      description="Actionable insights and contextual suggestions"
-                      delay={0.4}
-                    />
-                  </Col>
-                </Row>
-              </motion.div>
+              </motion.header>
+              
+              {/* Architecture Diagram */}
+              <motion.section variants={fadeInUp} className="mt-6" aria-labelledby="architecture-heading">
+                <h2 id="architecture-heading" className="section-title">Architecture Overview</h2>
+                <div className="tech-flow">
+                  <TechNode 
+                    label="Input" 
+                    description="Multi-source ingestion from docs, tickets, conversations"
+                    delay={0.1}
+                  />
+                  <span className="tech-flow-arrow" aria-hidden="true">→</span>
+                  <TechNode 
+                    label="Memory" 
+                    description="Persistent, contextual storage with temporal awareness"
+                    delay={0.2}
+                  />
+                  <span className="tech-flow-arrow" aria-hidden="true">→</span>
+                  <TechNode 
+                    label="Reasoning" 
+                    description="Pattern recognition and intelligent inference"
+                    delay={0.3}
+                  />
+                  <span className="tech-flow-arrow" aria-hidden="true">→</span>
+                  <TechNode 
+                    label="Output" 
+                    description="Actionable insights and contextual suggestions"
+                    delay={0.4}
+                  />
+                </div>
+              </motion.section>
 
-              <motion.div variants={fadeInUp} className="mt-5">
-                <h3 className="section-title">Key Principles</h3>
+              {/* Key Principles */}
+              <motion.section variants={fadeInUp} className="mt-6" aria-labelledby="principles-heading">
+                <h2 id="principles-heading" className="section-title">Key Principles</h2>
                 <Row className="g-4 mt-3">
                   <Col md={6}>
-                    <div className="featureCard" style={{ height: 'auto' }}>
-                      <h4 className="featureTitle" style={{ fontSize: '1.25rem' }}>Privacy First</h4>
-                      <p className="section-text" style={{ marginBottom: 0 }}>
+                    <Card variant="default">
+                      <Card.Header>
+                        <h3 style={{ fontSize: '1.25rem', fontWeight: 600, margin: 0, color: 'var(--text)' }}>
+                          Privacy First
+                        </h3>
+                      </Card.Header>
+                      <Card.Body>
                         Your data stays yours. brAIn processes locally when possible, 
                         encrypts in transit, and never shares without explicit consent.
-                      </p>
-                    </div>
+                      </Card.Body>
+                    </Card>
                   </Col>
                   <Col md={6}>
-                    <div className="featureCard" style={{ height: 'auto' }}>
-                      <h4 className="featureTitle" style={{ fontSize: '1.25rem' }}>Incremental Learning</h4>
-                      <p className="section-text" style={{ marginBottom: 0 }}>
+                    <Card variant="default">
+                      <Card.Header>
+                        <h3 style={{ fontSize: '1.25rem', fontWeight: 600, margin: 0, color: 'var(--text)' }}>
+                          Incremental Learning
+                        </h3>
+                      </Card.Header>
+                      <Card.Body>
                         Continuous improvement without disruption. brAIn adapts to your 
                         workflow, learning patterns and preferences over time.
-                      </p>
-                    </div>
+                      </Card.Body>
+                    </Card>
                   </Col>
                 </Row>
-              </motion.div>
+              </motion.section>
+
+              {/* Technical Features */}
+              <motion.section variants={fadeInUp} className="mt-6" aria-labelledby="features-heading">
+                <h2 id="features-heading" className="section-title">Technical Features</h2>
+                <Row className="g-4 mt-3">
+                  <Col md={4}>
+                    <IconFeature 
+                      icon="🔒"
+                      title="End-to-End Encryption"
+                      description="All data encrypted at rest and in transit using AES-256"
+                    />
+                  </Col>
+                  <Col md={4}>
+                    <IconFeature 
+                      icon="⚡"
+                      title="Real-Time Processing"
+                      description="Sub-100ms response times for contextual suggestions"
+                    />
+                  </Col>
+                  <Col md={4}>
+                    <IconFeature 
+                      icon="🔄"
+                      title="Seamless Sync"
+                      description="Cross-device synchronization keeps your context everywhere"
+                    />
+                  </Col>
+                </Row>
+              </motion.section>
+
+              {/* Integration Ecosystem */}
+              <motion.section variants={fadeInUp} className="mt-6" aria-labelledby="integrations-heading">
+                <h2 id="integrations-heading" className="section-title">Integration Ecosystem</h2>
+                <Card variant="highlight" hoverable={false}>
+                  <Card.Body>
+                    <p style={{ margin: 0 }}>
+                      brAIn connects with your existing tools: <strong>Slack</strong>, <strong>Notion</strong>, 
+                      <strong> Google Workspace</strong>, <strong>Jira</strong>, <strong>GitHub</strong>, and more. 
+                      Our open API allows custom integrations for enterprise workflows.
+                    </p>
+                  </Card.Body>
+                </Card>
+              </motion.section>
             </motion.div>
           </Col>
         </Row>
       </Container>
+      
+      {/* Waitlist Banner */}
+      <WaitlistBanner />
     </motion.main>
   )
 }
 
 export default Technology
-
-
-
-
-

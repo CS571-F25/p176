@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import SiteNavbar from './components/Navbar'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import Mission from './pages/Mission'
 import Technology from './pages/Technology'
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <div className="appRoot">
+      <ScrollToTop />
       <SiteNavbar />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>

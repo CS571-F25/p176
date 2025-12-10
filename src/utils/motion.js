@@ -2,59 +2,81 @@
 const linearEase = [0.22, 1, 0.36, 1]
 const smoothEase = [0.4, 0, 0.2, 1]
 
-// Base animations
+// Base animations - with exit transitions for scroll reversing
 export const fadeInUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { 
+    opacity: 0, 
+    y: 24,
+    transition: { duration: 0.4, ease: smoothEase }
+  },
   visible: { 
     opacity: 1, 
     y: 0, 
-    transition: { duration: 0.7, ease: linearEase } 
+    transition: { duration: 0.6, ease: linearEase } 
   }
 }
 
 export const fadeIn = {
-  hidden: { opacity: 0 },
+  hidden: { 
+    opacity: 0,
+    transition: { duration: 0.3, ease: smoothEase }
+  },
   visible: { 
     opacity: 1, 
-    transition: { duration: 0.6, ease: linearEase } 
+    transition: { duration: 0.5, ease: linearEase } 
   }
 }
 
 export const scaleIn = {
-  hidden: { opacity: 0, scale: 0.96 },
+  hidden: { 
+    opacity: 0, 
+    scale: 0.96,
+    transition: { duration: 0.3, ease: smoothEase }
+  },
   visible: { 
     opacity: 1, 
     scale: 1, 
-    transition: { duration: 0.6, ease: linearEase } 
+    transition: { duration: 0.5, ease: linearEase } 
   }
 }
 
 export const slideInRight = {
-  hidden: { opacity: 0, x: 32 },
+  hidden: { 
+    opacity: 0, 
+    x: 32,
+    transition: { duration: 0.4, ease: smoothEase }
+  },
   visible: { 
     opacity: 1, 
     x: 0, 
-    transition: { duration: 0.7, ease: linearEase } 
+    transition: { duration: 0.6, ease: linearEase } 
   }
 }
 
 export const slideInLeft = {
-  hidden: { opacity: 0, x: -32 },
+  hidden: { 
+    opacity: 0, 
+    x: -32,
+    transition: { duration: 0.4, ease: smoothEase }
+  },
   visible: { 
     opacity: 1, 
     x: 0, 
-    transition: { duration: 0.7, ease: linearEase } 
+    transition: { duration: 0.6, ease: linearEase } 
   }
 }
 
 // Stagger containers
-export const staggerContainer = (stagger = 0.12) => ({
-  hidden: { opacity: 0 },
+export const staggerContainer = (stagger = 0.1) => ({
+  hidden: { 
+    opacity: 0,
+    transition: { duration: 0.3 }
+  },
   visible: { 
     opacity: 1, 
     transition: { 
       staggerChildren: stagger,
-      delayChildren: 0.1
+      delayChildren: 0.05
     } 
   }
 })
@@ -63,7 +85,7 @@ export const staggerFast = {
   hidden: { opacity: 0 },
   visible: { 
     opacity: 1, 
-    transition: { staggerChildren: 0.08 } 
+    transition: { staggerChildren: 0.06 } 
   }
 }
 
@@ -129,7 +151,9 @@ export const hoverGlow = {
   }
 }
 
-
-
-
-
+// Default viewport settings for scroll animations
+export const scrollViewport = {
+  once: false,
+  amount: 0.3,
+  margin: '-50px'
+}
